@@ -13,15 +13,12 @@
 
 <body id="body">
     <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
-        <!-- <img src="https://cdn-icons-png.flaticon.com/128/1672/1672215.png" width="30px" height="30px"> -->
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-item nav-link active h3">Proyecto Nomina <span class="sr-only">(current)</span></a>
             </div>
-
         </div>
     </nav>
-
 
     <div class="container main-container">
         <div class="header-container">
@@ -43,42 +40,50 @@
                                 </tr>
                             </thead>
                         </div>
-                        <tbody>
-                            <?php
-
-
-
-
-                            for ($i = 0; $i < 3; $i++) {
-                                echo "<tr class='bg-custom'>
-            <td><input class='form-control' type='text' name='nomb[]'></td>
-            <td><input class='form-control' type='text' name='cent[]'></td>
-            <td><input class='form-control' type='text' name='carg[]'></td>
-            <td><input class='form-control' type='number' name='id[]'></td>
-            <td><input class='form-control' type='number' name='suel[]'></td>
-            <td><input class='form-control' type='number' name='dias[]'></td>
-        </tr>";
-                            } ?>
-
-
+                        <tbody id="tabla-dinamica">
+                            <!-- Fila inicial -->
+                            <tr class='bg-custom'>
+                                <td><input class='form-control' type='text' name='nomb[]'></td>
+                                <td><input class='form-control' type='text' name='cent[]'></td>
+                                <td><input class='form-control' type='text' name='carg[]'></td>
+                                <td><input class='form-control' type='number' name='id[]'></td>
+                                <td><input class='form-control' type='number' name='suel[]'></td>
+                                <td><input class='form-control' type='number' name='dias[]'></td>
+                            </tr>
                         </tbody>
                     </table>
-                    <i class="fa fa-address-book" aria-hidden="true"></i>
+                    <button type="button" class="btn btn-success" id="agregar-fila">
+                        <i class="fa fa-plus" aria-hidden="true"></i> Añadir Fila
+                    </button>
+                    <br><br>
                     <input class="btn btn-primary" type='submit' value='Enviar'>
                     <input class="btn btn-info" type='reset' value='Reset'>
                 </form>
             </div>
         </div>
-
     </div>
-
-
-    </div>
-
 
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('agregar-fila').addEventListener('click', function () {
+            // Obtener la tabla de la fila dinámica
+            var tablaDinamica = document.getElementById('tabla-dinamica');
+
+            // Crear una nueva fila clonando la primera fila
+            var nuevaFila = tablaDinamica.rows[0].cloneNode(true);
+
+            // Limpiar los valores de los inputs en la nueva fila
+            var inputs = nuevaFila.getElementsByTagName('input');
+            for (var i = 0; i < inputs.length; i++) {
+                inputs[i].value = '';
+            }
+
+            // Añadir la nueva fila a la tabla
+            tablaDinamica.appendChild(nuevaFila);
+        });
+    </script>
 </body>
 
 </html>

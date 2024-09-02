@@ -50,6 +50,7 @@
                         for ($i = 0; $i < $tam; $i++) {
                             $s = ($suel[$i] / 30) * $dias[$i];
                             $sal2[] = $s;
+
                             echo "<tr class='bg-custom'>
                                 <td class='text-center'>$id[$i]<input class='form-control d-none' type='number' name='id[]' value='{$id[$i]}' readonly></td>
                                 <td class='text-center'>$nom[$i]<input class='form-control d-none' type='text' name='nomb[]' value='{$nom[$i]}' readonly></td>
@@ -61,6 +62,7 @@
                             </tr>";
                         }
                         ?>
+                        
                         <tr >
                             <td colspan="7">
                                 <input class="btn btn-primary" type='submit' value='Generar PDF'>
